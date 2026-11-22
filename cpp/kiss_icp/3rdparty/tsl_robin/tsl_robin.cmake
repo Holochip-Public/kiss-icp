@@ -22,4 +22,16 @@
 # SOFTWARE.
 include(FetchContent)
 FetchContent_Declare(tessil SYSTEM URL https://github.com/Tessil/robin-map/archive/refs/tags/v1.2.1.tar.gz)
-FetchContent_MakeAvailable(tessil)
+FetchContent_GetProperties(tessil)
+if(NOT tessil_POPULATED)
+  FetchContent_Populate(tessil)
+endif()
+
+# Create a header-only interface target for tsl::robin_map to avoid using its CMakeLists.txt
+if(NOT TARGET robin_map)
+  add_library(robin_map INTERFACE)
+  target_include_directories(robin_map INTERFACE ${tessil_SOURCE_DIR}/include)
+endif()
+if(NOT TARGET tsl::robin_map)
+  add_library(tsl::robin_map ALIAS robin_map)
+endif()

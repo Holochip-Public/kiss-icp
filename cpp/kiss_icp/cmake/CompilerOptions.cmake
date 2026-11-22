@@ -35,6 +35,7 @@ function(set_global_target_properties target)
             $<$<COMPILE_LANG_AND_ID:CXX,Clang,AppleClang>:-Wextra>
             $<$<COMPILE_LANG_AND_ID:CXX,Clang,AppleClang>:-Wconversion>
             $<$<COMPILE_LANG_AND_ID:CXX,Clang,AppleClang>:-Wno-sign-conversion>
+            $<$<COMPILE_LANG_AND_ID:CXX,Clang,AppleClang>:-Wno-implicit-int-conversion>
             # GNU
             $<$<COMPILE_LANG_AND_ID:CXX,GNU>:-fdiagnostics-color=always>
             $<$<COMPILE_LANG_AND_ID:CXX,GNU>:-Werror>
@@ -50,4 +51,5 @@ function(set_global_target_properties target)
   get_filename_component(INCLUDE_DIRS ${INCLUDE_DIRS} PATH)
   target_include_directories(${target} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}
                              PUBLIC $<BUILD_INTERFACE:${INCLUDE_DIRS}> $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
+  set_target_properties(${target} PROPERTIES FOLDER "ThirdParty")
 endfunction()

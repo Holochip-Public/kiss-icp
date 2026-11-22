@@ -1,3 +1,10 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 12345678..87654321 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -1,1 +1,1 @@
+-cmake_minimum_required(VERSION 3.4)
++cmake_minimum_required(VERSION 3.5)
 diff --git a/sophus/common.hpp b/sophus/common.hpp
 index 5634d35b..56a1b590 100644
 --- a/sophus/common.hpp
